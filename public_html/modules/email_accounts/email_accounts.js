@@ -51,7 +51,6 @@ var mod_email_accounts = {
             dataType: "json",
             success: function(data){
                 $this.module_info = data;
-                $this.elem.find(".gm-uc-page-header-title").html($this.module_info.locales["title"]);
                 var filtersBox = $this.elem.find(".gm-uc-sidebar");
                 filtersBox.empty();
                 for (let i = 0; i < $this.module_info.filters.length; i++) {
@@ -87,7 +86,7 @@ var mod_email_accounts = {
             data: 
             {
                 module: "email_accounts",
-                topic: "list_accounts", 
+                topic: "get_list", 
                 filtro: $this.elem.find(".txt-search").val(), 
                 pagina : pagina, 
                 ordenar_por: $this.elem.find(".gm-filter-order_by").val(), 

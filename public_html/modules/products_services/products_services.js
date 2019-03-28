@@ -7,11 +7,6 @@ var ucProductos = {
         var $this = this;
 
         $("#ucProductos-btnAgregar").click(function(){
-            /*
-            frmProductos.open(0, function(){
-                $this.cargar_datos($this.pagina);
-            });
-            */
             CloureManager.navigate("products_services", "add");
         });
         $("#ucProductos-lstProductos").on("click", ".gm-itembox", function(e){
@@ -92,28 +87,7 @@ var ucProductos = {
                             if(registros[i].Publicar==true) color = "#12960c";
                             else color = "#c61111";
         
-                            var priceBox = "<span style='color: #12960c; font-size: 24px'>$ "+registros[i].Importe+"</span>";
-                            if(registros[i].EnPromocion) {
-                                
-                                if(registros[i].EnPromocionTipo=="fija" || registros[i].EnPromocionTipo==""){
-                                    priceBox="<span style='color: #12960c; font-size: 20px; text-decoration: line-through;'>$ "+registros[i].VentaImporte+"</span>";
-                                    priceBox+="<span style='color: #12960c; font-size: 24px'>$ "+registros[i].Importe+"</span>";
-                                } 
-                                else if(registros[i].EnPromocionTipo=="cantidad"){
-                                    
-                                    var promos = registros[i].CategoriaPromoCant;
-                                    
-                                    priceBox = "";
-                                    priceBox += "x1 : $ "+registros[i].Importe+"<br/>";
-                                    for (var j = 0; j<promos.length; j++) {
-                                        var importe = registros[i].Importe;
-                                        if(promos[j].tipo_dto=="lineal"){
-                                            importe = importe - promos[j].valor;
-                                        }
-                                        priceBox += "x"+promos[j].desde+" : $ "+importe+"<br/>";
-                                    }
-                                }
-                            }
+                            var priceBox = "<span style='color: #12960c; font-size: 24px'>$ "+registros[i].venta_importe+"</span>";
         
                             $(".gm-itembox-container").append(
                                 "<div class='gm-itembox editable row' data-id='"+registros[i].Id+"'>"+
@@ -123,6 +97,7 @@ var ucProductos = {
                                         "</div>"+
                                     "</div>"+
                                     "<div class='col-md-9'>"+
+                                        "<h2 class='title'>"+registros[i].titulo+"</h2>"+
                                         (registros[i].Destacado ? " <span class='gm-itembox-additional-info' style='color: #d8aa13'><i class='fa fa-star'></i> Producto Destacado!</span>" : "")+
                                         "<div>"+
                                             (registros[i].CategoriaN1Id>0 ? "<span class='gm-itembox-additional-info'><i class='fa fa-square'></i> "+registros[i].CategoriaN1+"</span>" : "") +

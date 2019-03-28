@@ -9,15 +9,22 @@ var mod_receipts = {
             $this.cargar_datos();
         });
 
-        $this.elem.on("keypress", ".txt-search", function(e){
+        $this.elem.on("keypress", ".toolbar-search", function(e){
             if(e.which == 13) {
                 $this.cargar_datos();
             }
         });
+        $this.elem.on("click", ".toolbar-search", function(e){
+            $(this).select();
+        });
+
+        $("#btnBack").click(function(){
+            CloureManager.go_back();
+        });
 
         $this.elem.find(".gm-itembox-container").on("click", ".gm-itembox", function(){
             var comprobante_id = $(this).data("id");
-            frmReceiptDetail.open(comprobante_id);
+            CloureManager.navigate("receipts", "details", comprobante_id);
         });
 
         $this.get_module_info();
@@ -38,7 +45,6 @@ var mod_receipts = {
             dataType: "json",
             success: function(data){
                 $this.module_info = data;
-                //$this.elem.find(".gm-uc-page-header-title").html($this.module_info.locales["title"]);
                 var filtersBox = $this.elem.find(".gm-uc-sidebar");
                 filtersBox.empty();
                 for (let i = 0; i < $this.module_info.filters.length; i++) {
@@ -106,15 +112,15 @@ var mod_receipts = {
                                 "<div class='gm-itembox' data-id='"+registros[i].Id+"'>"+
                                     "<div class='row'>"+
                                         "<div class='col-md-9'>"+
-                                            "<span class='gm-itembox-title'>"+registros[i].Detalles+"</span>"+
+                                            "<span class='gm-itembox-title'>"+registros[i].descripcion+"</span>"+
                                             "<div>"+
-                                                "<span class='gm-itembox-additional-info' style='color: "+color_estado+"'><i class='fa fa-circle'></i> "+registros[i].Estado+"</span>"+
-                                                "<span class='gm-itembox-additional-info'><i class='far fa-clock'></i> "+registros[i].FechaStr+"</span>"+
+                                                "<span class='gm-itembox-additional-info' style='color: "+color_estado+"'><i class='fa fa-circle'></i> "+registros[i].estado+"</span>"+
+                                                "<span class='gm-itembox-additional-info'><i class='far fa-clock'></i> "+registros[i].fecha+"</span>"+
                                                 (registros[i].Usuario!=null ? "<span class='gm-itembox-additional-info'><i class='fa fa-user'></i> "+registros[i].Usuario+"</span>" : "")+
                                             "</div>"+
                                         "</div>"+
                                         "<div class='col-md-3' style='text-align: right'>"+
-                                            "<span class='gm-itembox-title' style='color: "+color+";'>$ "+registros[i].Total+"</span>"+
+                                            "<span class='gm-itembox-title' style='color: "+color+";'>$ "+registros[i].total+"</span>"+
                                         "</div>"+
                                     "</div>"+
                                 "</div>"

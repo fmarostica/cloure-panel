@@ -10,22 +10,11 @@ var ucUsuariosGrupos = {
 
         $("#btnAgregar").click(function()
         {
-            var account_type = $("#h-account-type").val();
-            if(account_type=="free"){
-                frmSubscribeCloure.open(0, function(){
-                    
-                });
-            } else {
-                frmUsuariosGrupos.open(0, function(){
-                    cargar_datos();
-                });
-            }
+            CloureManager.navigate("users_groups", "add");
         });
 
         $("#ucGrupos-lstGrupos").on("click", ".gm-itembox", function(){
-            frmUsuariosGrupos.open($(this).data("id"), function(){
-                $this.cargar_datos();
-            });
+            CloureManager.navigate("users_groups", "edit", $(this).data("id"));
         });
 
         $this.cargar_datos();
@@ -67,7 +56,8 @@ var ucUsuariosGrupos = {
                                 var title = registros[i].Nombre;
                                 var buttons = "";
                                 var editable = "";
-        
+                                
+                                /*
                                 for (var j = 0; j < commands.length; j++) {
                                     var cmd = registros[i].AvailableCommands[j];
                                     if(cmd=="borrar") buttons += "<button class='gm-btn danger btnBorrar'><span class='fa fa-trash'></span></button>";
@@ -76,10 +66,11 @@ var ucUsuariosGrupos = {
                                         editable = "editable";
                                     }
                                 }
+                                */
 
                                 $(".gm-itembox-container").append(
-                                    "<div class='gm-itembox "+editable+"' data-id='"+registros[i].Nombre+"'>"+
-                                        "<span class='gm-itembox-title' >"+title+"</span>"+
+                                    "<div class='gm-itembox "+editable+"' data-id='"+registros[i].id+"'>"+
+                                        "<span class='gm-itembox-title' >"+registros[i].nombre+"</span>"+
                                         "<div class='gm-itembox-buttons'>"+
                                             buttons+
                                         "</div>"+

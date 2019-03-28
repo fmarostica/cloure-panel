@@ -104,7 +104,7 @@ fjs.parentNode.insertBefore(js, fjs);
         <!--<label>Registros por página</label> <input type="number" value="20" class="gm-form-control" style="width: 60px" />-->
         <label class="label-toolbar no-mobile"><span id="gm-uc-page-footer-total-registers">0</span> Registros encontrados</label>
         <?php 
-            echo "<label id='ucProductos-PagerInfo' class='no-mobile'>(Página {page} de {total_pages})</label>";
+            echo "<label id='ucProductos-PagerInfo' class='label-toolbar no-mobile'>(Página {page} de {total_pages})</label>";
         ?>
     </div>
 </div>

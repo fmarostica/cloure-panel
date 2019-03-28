@@ -12,8 +12,6 @@ var mod_users = {
         var doneTypingInterval = 300;
         var $input = $('#myInput');
 
-        $this.get_locales();
-
         $(".gm-filter").on("change keyup", function(e){
             clearTimeout(typingTimer);
             typingTimer = setTimeout(doneTyping, doneTypingInterval);
@@ -24,9 +22,7 @@ var mod_users = {
         }
 
         $this.element.on("click", ".btn-add-user", function(){
-            frmUsuariosAgregar.open(function(){
-                $this.cargar_datos();
-            });
+            CloureManager.navigate("users", "add");
         });
 
         $("#ucUsuarios-lstUsuarios").on("click", ".btnReasignarPass", function(e){
@@ -59,8 +55,6 @@ var mod_users = {
         //$this.cargar_grupos();
         
         $this.cargar_datos();
-
-        $this.get_locales();
     },
     set_locale: function(locale_obj){
         var $this = this;
@@ -252,6 +246,7 @@ var mod_users = {
                             var commands_controls = "";
                             var title = item.razon_social;
 
+                            /*
                             for (var j = 0; j < commands.length; j++) {
                                 //if(commands[j].Name=="account_summary") commands_controls+="<a href='/pdf-export/account-summary/?id="+registros[i].id+"' target='_blank' class='gm-btn primary btnAccountSummary'><i class='fa fa-clipboard-list'></i></a>";
                                 if(commands[j].Name=="account_summary") commands_controls+="<button type='button' class='gm-btn primary btnAccountSummaryPage'><i class='fa fa-list-ul'></i></button>";
@@ -259,6 +254,7 @@ var mod_users = {
                                 if(commands[j].Name=="add_payment") commands_controls+="<button class='gm-btn success btnAgregarPago'><i class='fa fa-dollar-sign'></i></button>";
                                 if(commands[j].Name=="delete") commands_controls+="<button class='gm-btn danger btnBorrar'><i class='fa fa-trash'></i></button>";
                             }
+                            */
 
                             $this.element.find(".gm-itembox-container").append(
                                 "<div class='gm-itembox editable' data-id='"+registros[i].id+"'>"+

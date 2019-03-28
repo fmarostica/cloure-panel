@@ -79,15 +79,19 @@ footer{
     border-radius: 0px;
 }
 
+.gm-image-changeable-file{
+    display: none;
+}
 .gm-itembox{
     padding: 5px;
+}
+.gm-itembox:hover{
+    background-color: rgb(196, 221, 255);
 }
 .gm-itembox.editable{
     cursor: pointer;
 }
-.gm-itembox.editable:hover{
-    background-color: rgb(196, 221, 255);
-}
+
 .gm-itembox-container{
     display: block;
     width: 100%;
@@ -122,6 +126,11 @@ footer{
     object-fit: cover;
 }
 
+.gm-itembox .title{
+    font-family: 'Segoe UI', Tahoma, "Geneva", Verdana, sans-serif;
+    font-size: 22px;
+}
+
 .gm-uc-page{
     position: relative;
 }
@@ -153,6 +162,7 @@ footer{
 .label-toolbar{
     color: #fff;
     line-height: 40px;
+    padding-left: 10px;
 }
 
 #leftsidebar{
@@ -338,6 +348,7 @@ footer{
 }
 
 #output .gm-uc-page-footer{
+    display: flex;
     height: 40px;
 }
 

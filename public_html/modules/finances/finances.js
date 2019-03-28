@@ -33,7 +33,6 @@ var mod_finances = {
             dataType: "json",
             success: function(data){
                 $this.module_info = data;
-                $this.elem.find(".gm-uc-page-header-title").html($this.module_info.locales["title"]);
                 var filtersBox = $this.elem.find(".gm-uc-sidebar");
                 filtersBox.empty();
                 for (let i = 0; i < $this.module_info.filters.length; i++) {

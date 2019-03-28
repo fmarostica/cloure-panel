@@ -30,6 +30,7 @@ var CloureManager = {
     active_module: null,
     module_active_name: "",
     module_active_url: null,
+    active_param: null,
     initialize: function (){
         var $this = this;
         var $header = $('#biz-header');
@@ -178,7 +179,7 @@ var CloureManager = {
         var url = "";
         var module_path = "";
 
-        $("#h-parameter").val($parameter);
+        $this.active_param = $parameter;
 
         var obj_state = {
             modulo: $module,
@@ -200,7 +201,7 @@ var CloureManager = {
         $this.module_active_name = $module;
         $this.module_active_url = url;
         $("#output").load(module_path, function(){
-
+            
         });
         var active_module_str = "mod_"+$module;
         $this.active_module = window[active_module_str];
