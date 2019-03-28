@@ -1,0 +1,403 @@
+body{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.btn-toolbar{
+    border: 0px;
+    background: rgb(10, 88, 190);
+    padding: 5px;
+    display: inline-block;
+    vertical-align: top;
+}
+.btn-toolbar:hover{
+    border: 0px;
+    background: rgb(53, 123, 214);
+    padding: 5px;
+}
+.btn-toolbar svg{
+    fill: #fff;
+    width: 30px;
+    height: 30px;
+}
+
+.btn{
+    border-radius: 0px;
+}
+
+.btn svg{
+    width: 20px;
+    height: 20px;
+    fill: #fff;
+}
+
+.command-button{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    padding: 3px;
+}
+.command-button:hover{
+    background-color: rgb(10, 88, 190);
+}
+
+.dashboardbox{
+    display: inline-block;
+    position: relative;
+    margin: 5px;
+    width: 250px;
+    height: 100px;
+    background-color: rgb(10, 88, 190);
+    overflow: hidden;
+    padding: 12px;
+}
+
+.dashboardbox svg{
+    fill: #fff;
+    vertical-align: top;
+}
+.dashboardbox .label{
+    display: inline-block;
+    font-size: 48px;
+    vertical-align: top;
+    color: #fff;
+    margin-left: 10px;
+}
+
+footer{
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+    height: 34px;
+    background-color: #111;
+    padding: 9px 10px;
+    color: white;
+    font-size: 11px;
+}
+
+.form-control{
+    border-radius: 0px;
+}
+
+.gm-itembox{
+    padding: 5px;
+}
+.gm-itembox.editable{
+    cursor: pointer;
+}
+.gm-itembox.editable:hover{
+    background-color: rgb(196, 221, 255);
+}
+.gm-itembox-container{
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.gm-itembox-container.empty{
+    display: table;
+    background-color: #fff;
+    width: 100%;
+}
+
+.gm-itembox-container.empty .gm-empty-content{
+    color: #555;
+    font-size: 20px;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+    width: 100%;
+    font-weight: lighter;
+    line-height: 28px;
+}
+
+.gm-itembox-imgcontainer{
+    width: 100%;
+    height: 150px;
+}
+.gm-itembox-imgcontainer > img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gm-uc-page{
+    position: relative;
+}
+
+.gm-uc-sidebar{
+    position: absolute;
+    width: 250px;
+    height: calc(100vh - 180px);
+    background-color: rgba(0,0,0,0.9);
+    color: #fff;
+    top: 40px;
+    right: -250px;
+    padding: 10px;
+    transition: all 0.5s; 
+}
+.gm-uc-sidebar.open{
+    right: 0px
+}
+
+#header{
+    position: absolute;
+    background-color: #111;
+    top: 0px;
+    width: 100%;
+    height: 66px;
+    z-index: 2;
+}
+
+.label-toolbar{
+    color: #fff;
+    line-height: 40px;
+}
+
+#leftsidebar{
+    position: fixed;
+    width: 300px;
+    height: calc(100vh - 100px);
+    background-color: #222;
+    display: inline-block;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-color: rgb(10, 88, 190) rgb(36, 36, 36);
+    scrollbar-width: thin;
+}
+
+.login-page{
+    text-align: center;
+}
+.login-copy{
+    margin-top: 10px;
+    font-size: 11px;
+}
+.login-copy a{
+    font-size: 11px;
+}
+.login-box{
+    display: inline-block;
+    width: 360px;
+    margin-top: 40px;
+}
+.login-box-header{
+    margin-bottom: 15px;
+}
+.login-box-header>.gm-image-container{
+    max-height: 200px;
+}
+.login-box-header>.gm-image-container>img{
+    max-height: 200px;
+    width: 100%;
+}
+.login-box>.login-box-body{
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0px 0px 5px 1px #888;
+}
+#login-loader{
+    display: none;
+}
+#login-loader.active{
+    display: block;
+}
+.logo{
+    height: 40px;
+}
+
+.menu-item{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 35px;
+    border: 0px;
+    padding: 0px;
+    color: #aaa;
+}
+
+.menu-item:hover, .menu-item.active{
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
+
+.menu-item:hover .deco, .menu-item.active .deco{
+    background-color: rgb(10, 88, 190);
+}
+
+.menu-item .deco{
+    position: absolute;
+    display: inline-block;
+    width: 4px;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    background-color: #333;
+    border: 0px;
+}
+.menu-item .label{
+    position: absolute;
+    display: inline-block;
+    width: calc(100% - 10px);
+    height: 100%;
+    top: 0px;
+    left: 10px;
+    vertical-align: top;
+    line-height: 35px;
+    text-align: left;
+    padding-left: 10px;
+}
+.menu-item .badge{
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    border-radius: 13px;
+    top: 5px;
+    right: 10px;
+    background-color: rgb(10, 88, 190);
+    color: white;
+    text-align: center;
+    font-size: 10px;
+    line-height: 17px;
+}
+.module-header{
+    background-color: #333;
+    width: 100%;
+    height: 30px;
+}
+.module-body{
+    height: calc(100vh - 130px);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.navbarDropdown{
+    position: absolute;
+    z-index: 1;
+}
+
+#output{
+    position: absolute;
+    background-color: #fff;
+    color: #333;
+    left: 300px;
+    width: calc(100% - 300px);
+    height: calc(100vh - 100px);
+    background-color: rgb(41, 41, 41);
+    z-index: 0;
+    
+    
+}
+
+#output h1{
+    font-family: 'Quicksand', sans-serif;
+    color: rgb(10, 88, 190);
+    border-bottom: 1px solid #aaa;
+    font-size: 32px;
+}
+
+#output .gm-uc-page-header{
+    height: 40px;
+    vertical-align: top;
+    background-color: #333;
+}
+
+#output .gm-uc-page-body{
+    background-color: #fff;
+    scrollbar-color: rgb(10, 88, 190) rgb(36, 36, 36);
+    scrollbar-width: thin;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: calc(100vh - 180px);
+}
+
+#output .gm-uc-page-footer{
+    height: 40px;
+}
+
+#pdcbody{
+    margin-top: 66px;
+    width: 100%;
+    height: calc(100vh - 100px);
+}
+
+.right{
+    text-align: right;
+}
+
+.sub-items-container{
+    display: none;
+}
+.sub-menu-item{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 35px;
+    border: 0px;
+    padding: 0px;
+    color: #aaa;
+}
+
+.sub-menu-item:hover, .sub-menu-item.active{
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
+
+.sub-menu-item:hover .deco, .menu-item.active .deco{
+    background-color: rgb(10, 88, 190);
+}
+
+.sub-menu-item .label{
+    position: absolute;
+    display: inline-block;
+    width: calc(100% - 10px);
+    height: 100%;
+    top: 0px;
+    left: 10px;
+    vertical-align: top;
+    line-height: 35px;
+    text-align: left;
+    padding-left: 30px;
+}
+.sub-menu-item .badge{
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    border-radius: 13px;
+    top: 5px;
+    right: 10px;
+    background-color: rgb(10, 88, 190);
+    color: white;
+    text-align: center;
+    font-size: 10px;
+    line-height: 17px;
+}
+
+.th-action{
+    width: 100px;
+}
+
+.toolbar-search{
+    display: inline-block !important;
+    width: 300px;
+    height: 40px;
+}
+
+@media screen and (max-width: 768px){
+    #leftsidebar {
+        position: fixed;
+    }
+
+    #leftsidebar.closed {
+        left: -300px;
+    }
+
+    #output {
+        width: 100%;
+        position: relative;
+        left: 0px;
+    }
+}

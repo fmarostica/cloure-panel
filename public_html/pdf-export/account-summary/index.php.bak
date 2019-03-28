@@ -1,0 +1,73 @@
+<?php
+    include_once $_SERVER["DOCUMENT_ROOT"]."/main.php";
+    date_default_timezone_set("America/Argentina/Cordoba");
+    header('Content-Type: text/html; charset=utf-8');
+
+    //inicio importacion de librerias
+    include_once $_SERVER["DOCUMENT_ROOT"]."/lib/tcpdf/tcpdf.php";
+
+    $Fecha = new DateTime();
+    $usuario_id = 0;
+    if(isset($_GET["id"])) $usuario_id = $_GET["id"];
+    else die("No se especifico el id de usuario"); 
+
+    $style3 = array('width' => 0.3, 'cap' => 'round', 'join' => 'round', 'solid' => '1', 'color' => array(0, 0, 0));
+    $pdf = new TCPDF("P", "mm", "A4", true, 'UTF-8', false);
+    $pdf->SetCreator("Cloure");
+    $pdf->SetAuthor(''); //Tiene que ir el nombre de la empresa
+    $pdf->SetTitle(''); //El titulo del documento
+    $pdf->SetSubject('');
+    $pdf->SetKeywords('');
+    $pdf->setPrintHeader(false);
+    $pdf->setPrintFooter(false);
+    $pdf->SetDefaultMonospacedFont("Courier");
+    $pdf->SetMargins(15, 20, 15);
+    $pdf->SetAutoPageBreak(TRUE, 25);
+    $pdf->setImageScale(1.00);
+    $pdf->setFontSubsetting(true);
+    $pdf->SetFont('dejavusans', '', 8, '', true);
+
+    $params=[
+        "module"=>"finances", 
+        "topic"=>"listarCC",
+        "usuario_id"=>$usuario_id,
+        "orden"=>"asc",
+        "limite"=>0,
+    ];
+    $registros_res = json_decode($CloureSDK->execute($params));
+    $response = $registros_res->Response;
+    $registros = $response->Registros;
+
+    $pdf->AddPage();
+
+    /*
+    $logo=$_SERVER["DOCUMENT_ROOT"].'/images/logo-pdf.png';
+    if(file_exists($logo)){
+        $pdf->Image($_SERVER["DOCUMENT_ROOT"].'/images/logo-pdf.png', 15, 15, 50, 0, 'PNG', '', '', true, 150, '', false, false, 0, false, false, false);
+    }
+    */
+    $pdf->SetFont('dejavusans', '', 10, '', true);
+
+    $pdf->Ln(6);
+    $pdf->SetFont('dejavusans', '', 12, '', true);
+    $pdf->Cell(180, 6, "Resumen de cuenta al ".date("d/m/Y"), 0, 0, 'C');
+    $pdf->SetFont('dejavusans', '', 8, '', true);
+    $pdf->Ln(8);
+
+    $pdf->Cell(30, 6, "Fecha", 0, 0, 'L');
+    $pdf->Cell(140, 6, "Detalles", 0, 0, 'L');
+    $pdf->Cell(30, 6, "Importe", 0, 0, 'L');
+    $pdf->Ln(5);
+
+    foreach ($registros as $registro) { 
+        $pdf->Cell(30, 6, $registro->FechaStr, 0, 0, 'L');
+        $pdf->Cell(140, 6, $registro->Detalles, 0, 0, 'L');
+        $pdf->Cell(30, 6, "$ ".$registro->Importe, 0, 0, 'L');
+        $pdf->Ln(5);
+    }
+    $pdf->Cell(30, 6, "", 0, 0, 'L');
+    $pdf->Cell(140, 6, "SALDO", 0, 0, 'R');
+    $pdf->Cell(30, 6, "$ ".$response->SaldoCC, 0, 0, 'L');
+
+    $pdf->Output(__DIR__.'/account_summary.pdf', 'I');
+?>

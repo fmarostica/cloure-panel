@@ -1,0 +1,9 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    #RewriteCond %{SERVER_PORT} 2084 
+    RewriteBase /
+    RewriteRule ^login$ login.php [QSA]
+    RewriteRule ^([a-z-_]*)$ index.php?module=$1 [QSA]
+    RewriteRule ^([a-z-_]*)/([a-z-_]*)$ index.php?module=$1&page=$2 [QSA]
+    RewriteRule ^([a-z-_]*)/([a-z-_]*)/([a-z0-9-_]*)$ index.php?module=$1&page=$2&id=$3 [QSA]
+</IfModule>

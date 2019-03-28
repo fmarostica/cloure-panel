@@ -1,0 +1,30 @@
+.gm-combobox{
+    position: relative;
+}
+.gm-combobox>.popup{
+    list-style: none;
+    display: none;
+    margin: 0px;
+    padding: 4px;
+    background-color: rgba(0,0,0,0.8);
+    position: absolute;
+    width: 100%;
+}
+.gm-combobox>.selector{
+    display: block;
+    cursor: pointer;
+    white-space: nowrap;
+}
+.gm-combobox>.popup.active{
+    display: block;
+}
+.gm-combobox>.popup>.item{
+    display: block;
+    padding: 4px 6px;
+    white-space: nowrap;
+    cursor: pointer;
+    color: #fff;
+}
+.gm-combobox>.popup>.item:hover{
+    background-color: #20437c;
+}
