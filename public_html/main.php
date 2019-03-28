@@ -37,10 +37,12 @@
         $resourceKey = $resourceArr[1];
         $path = RES_PATH."lang/$lang/".$resourceFile;
 
-        $resource = include($path);
         $resourceVal = "{".$resourceString."}";
 
-        if(array_key_exists($resourceKey, $resource)) $resourceVal = $resource[$resourceKey];
+        if(file_exists($path)){
+            $resource = include($path);
+            if(array_key_exists($resourceKey, $resource)) $resourceVal = $resource[$resourceKey];
+        }
 
         return $resourceVal;
     }
