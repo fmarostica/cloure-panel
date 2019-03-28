@@ -27,7 +27,7 @@
     chdir(dirname(__DIR__, 2));
 
     define("CORE_PATH", "Core/");
-    define("RES_PATH", "resources/");
+    define("RES_PATH", $_SERVER["DOCUMENT_ROOT"]."/resources/");
     define("APP_PATH", "app/");
 
     function __(string $resourceString){

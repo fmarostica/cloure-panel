@@ -99,21 +99,25 @@ footer{
     overflow-y: auto;
     overflow-x: hidden;
 }
-.gm-itembox-container.empty{
+.gm-uc-page-body.empty{
     display: table;
     background-color: #fff;
     width: 100%;
 }
 
-.gm-itembox-container.empty .gm-empty-content{
+.gm-empty-content{
     color: #555;
     font-size: 20px;
     text-align: center;
     vertical-align: middle;
-    display: table-cell;
+    display: none;
     width: 100%;
     font-weight: lighter;
     line-height: 28px;
+}
+
+.gm-empty-content.visible{
+    display: table-cell;
 }
 
 .gm-itembox-imgcontainer{

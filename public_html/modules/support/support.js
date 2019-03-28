@@ -113,9 +113,8 @@ var ucTransportes = {
                             cargar_datos();
                         });
                     } else {
-                        $(".gm-itembox-container").append("<div class='gm-empty-content'>No has realizado consultas."+
-                        "</div>");
-                        $(".gm-itembox-container").addClass("empty");
+                        $(".gm-uc-page-body").addClass("empty");
+                        $(".gm-empty-content").addClass("visible");
                     }
                 }
                 else{
