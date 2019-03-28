@@ -4,8 +4,8 @@
                 <svg viewBox="0 0 24 24">
                     <path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" />
                 </svg>
-            </button><!--
-            --><button id="btnSave" title="Fijar Precios" type="button" class="btn-toolbar">
+            </button>
+            <button id="btnSave" title="Fijar Precios" type="button" class="btn-toolbar">
                 <svg viewBox="0 0 24 24">
                     <path d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z" />
                 </svg>
