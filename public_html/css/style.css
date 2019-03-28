@@ -273,10 +273,29 @@ footer{
     overflow-y: auto;
 }
 
+.navbar-brand{
+    display: block;
+    margin-right: 0px;
+    width: 100%;
+}
+
 .navbarDropdown{
     position: absolute;
     z-index: 1;
 }
+
+.navbar-toggler{
+    display: none;
+    position: absolute;
+    top: 12px;
+    left: 10px;
+}
+
+.navbar-toggler-icon > svg{
+    fill: #fff;
+}
+
+
 
 #output{
     position: absolute;
@@ -299,9 +318,14 @@ footer{
 }
 
 #output .gm-uc-page-header{
+    display: flex;
     height: 40px;
     vertical-align: top;
     background-color: #333;
+}
+
+#output .gm-uc-page-header .toolbar-search{
+    flex-grow: 1
 }
 
 #output .gm-uc-page-body{
@@ -389,6 +413,10 @@ footer{
 @media screen and (max-width: 768px){
     #leftsidebar {
         position: fixed;
+        left: 0px;
+        height: calc(100vh - 100px);
+        z-index: 100;
+        transition: all 0.5s;
     }
 
     #leftsidebar.closed {
@@ -399,5 +427,22 @@ footer{
         width: 100%;
         position: relative;
         left: 0px;
+        z-index: 10;
+    }
+
+    .navbar-brand{
+        text-align: center;
+    }
+
+    .navbar-toggler{
+        display: block;
+    }
+
+    .no-mobile {
+        display: none;
+    }
+
+    .toolbar-search{
+        width: 100px;
     }
 }

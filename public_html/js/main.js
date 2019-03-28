@@ -69,19 +69,8 @@ var CloureManager = {
         } else {
           $("#leftsidebar").removeClass("closed");
         }
-        $(".btnNavMenu").click(function(e){
+        $(".navbar-toggler").click(function(e){
           $("#leftsidebar").toggleClass("closed");
-        });
-
-        $("#btnUpdater").click(function(e){
-            $("#biz_updater").addClass("visible");
-        });
-        $("#btnUpdaterClose").click(function(e){
-          $("#updater-message").fadeOut();
-          e.stopPropagation();
-        });
-        $("#btnUpdaterNotes").click(function(e){
-          frmBizNotes.open();
         });
 
         $("#output").on("click",".btnFilter", function(e){

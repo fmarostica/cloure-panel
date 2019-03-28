@@ -58,11 +58,14 @@
                         <img src="/images/logo.svg" class="logo" />
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                        <span class="navbar-toggler-icon"></span>
+                        <span class="navbar-toggler-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+                            </svg>
+                        </span>
                     </button>
             </nav>
             <article id="pdcbody">
-                <example-component></example-component>
                 <aside id="leftsidebar" class="gm-sidebar">
                     <?php
                         $params=["topic"=>"load_modules"];
