@@ -7,12 +7,11 @@ var ucProductos = {
         var $this = this;
 
         $("#ucProductos-btnAgregar").click(function(){
-            CloureManager.navigate("products_services", "add");
+            CloureManager.navigate("products_services", "product");
         });
         $("#ucProductos-lstProductos").on("click", ".gm-itembox", function(e){
-            frmProductos.open($(this).data("id"), function(){
-                $this.cargar_datos($this.pagina);
-            });
+            var $id = $(this).data("id");
+            CloureManager.navigate("products_services", "product", $id);
         });
         $("#ucProductos-lstProductos").on("click", ".btnBorrar", function(e){
             $this.borrar($(this).closest(".gm-itembox").data("id"));
@@ -20,9 +19,7 @@ var ucProductos = {
         });
 
         $("#ucProductos-btnFijarPrecios").click(function(){
-            frmProductosPrecios.open(function(){
-                $this.cargar_datos();
-            });
+            CloureManager.navigate("products_services", "price_manager");
         });
 
         $("#ucProductos-btnFijarPromociones").click(function(){
@@ -43,7 +40,6 @@ var ucProductos = {
         });
 
         $this.cargar_categorias();
-        //$this.cargar_marcas();
         $this.cargar_datos();
     },
     cargar_datos: function(pagina=1){
@@ -62,7 +58,7 @@ var ucProductos = {
             data: 
             {
                 module: "products_services",
-                topic: "listar", 
+                topic: "get_list", 
                 filtro: $("#ucProductos-txtBuscar").val(), 
                 pagina : pagina,
                 ordenar_por: $("#ucProductos-txtOrdenarPor").val(),
@@ -90,10 +86,10 @@ var ucProductos = {
                             var priceBox = "<span style='color: #12960c; font-size: 24px'>$ "+registros[i].venta_importe+"</span>";
         
                             $(".gm-itembox-container").append(
-                                "<div class='gm-itembox editable row' data-id='"+registros[i].Id+"'>"+
+                                "<div class='gm-itembox editable row' data-id='"+registros[i].id+"'>"+
                                     "<div class='col-md-3'>"+
                                         "<div class='gm-itembox-imgcontainer'>"+
-                                            "<img src='"+registros[i].ImagenPath+"' />"+
+                                            "<img src='"+registros[i].imagen+"' />"+
                                         "</div>"+
                                     "</div>"+
                                     "<div class='col-md-9'>"+
@@ -112,19 +108,16 @@ var ucProductos = {
                                             (registros[i].Publicar==0 ? "<span class='gm-itembox-additional-info' style='color: #f00'>No publicado</span>" : "") +
                                         "</div>"+
                                         "<div class='gm-itembox-buttons' style='margin-top: 10px'>"+
-                                            "<button type='button' class='gm-btn danger btnBorrar'><span class='fa fa-trash'></span></button>"+
+                                            "<button type='button' class='btn btn-danger btn-sm btnBorrar'>"+
+                                                "<svg viewBox='0 0 24 24'>"+
+                                                    "<path d='M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z' />"+
+                                                "</svg>"+
+                                            "</span></button>"+
                                         "</div>"+
                                     "</div>"+
                                 "</div>"
                             );
                         }                        
-        
-                        $(".btn-facebook").click(function(){
-                            FB.ui({
-                                method: 'share',
-                                href: 'https://developers.facebook.com/docs/',
-                            }, function(response){});
-                        });
         
                         //Paginador
                         if($this.pagina>1){
@@ -220,7 +213,7 @@ var ucProductos = {
                 url: $this.ajax_url,
                 data: {
                     module: "products_services",
-                    topic: "borrar", 
+                    topic: "delete", 
                     id: id
                 },
                 type: 'POST',

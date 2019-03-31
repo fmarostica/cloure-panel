@@ -4,7 +4,6 @@ var mod_email_accounts = {
     elem: $("#email_accounts_page"),
     initialize: function(){
         var $this = this;
-
         $this.elem.on("click", ".btn-apply-filters", function(){
             $this.cargar_datos();
         });
@@ -75,6 +74,7 @@ var mod_email_accounts = {
         });
     },
     cargar_datos: function(pagina=1){
+        console.log("Loading email accounts");
         var $this = this;
         $("#btnSiguiente").attr("disabled", false);
         $("#btnUltimo").attr("disabled", false);
@@ -158,10 +158,8 @@ var mod_email_accounts = {
                             return false;
                         });
                     } else {
-                        $(".gm-itembox-container").append("<div class='gm-empty-content'>No se encontraron registros<br />"+
-                        "</div>");
-                        $(".gm-itembox-container").addClass("empty");
-                        $(".gm-uc-addon").css("display", "none");
+                        $(".gm-uc-page-body").addClass("empty");
+                        $(".gm-empty-content").addClass("visible");
                     }
                 }
                 else{
@@ -207,7 +205,6 @@ var mod_email_accounts = {
             });
         });
     }
-    
 }
 
 mod_email_accounts.initialize();

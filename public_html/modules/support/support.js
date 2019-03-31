@@ -55,9 +55,9 @@ var ucTransportes = {
                             $(".gm-itembox-container").append(
                                 "<div class='gm-itembox editable' data-id='"+registros[i].Id+"'>"+
                                         "<div class='gm-itembox-title'>"+
-                                            registros[i].Nombre+
-                                            "<div>"+registros[i].TipoEnvio+"</div>"+
+                                            registros[i].subject+
                                         "</div>"+
+                                        /*
                                         "<div class='gm-itembox-buttons'>"+
                                             "<button class='btn btn-danger btn-sm btnBorrar'>"+
                                                 "<svg viewBox='0 0 24 24'>"+
@@ -65,6 +65,7 @@ var ucTransportes = {
                                                 "</svg>"+
                                             "</button>"+
                                         "</div>"+
+                                        */
                                     "</div>"+
                                 "</div>"
                             );
@@ -141,7 +142,7 @@ var ucTransportes = {
                 url: $this.ajax_url,
                 data: {
                     topic: "borrar", 
-                    module: "transports",
+                    module: "support",
                     id: id
                 },
                 type: 'POST',

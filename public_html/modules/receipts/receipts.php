@@ -1,6 +1,3 @@
-<?php
-    include_once __DIR__."/modals/md-receipt.php";
-?>
 <div id="receiptsPage" class="gm-uc-page">
     <div class="gm-uc-page-header">
         <input id="ucProductos-txtBuscar" placeholder="Buscar" class="gm-form-control gm-filter toolbar-search" type="search" />
@@ -12,27 +9,25 @@
     </div>
     <div class="gm-uc-page-body">
         <div class="gm-itembox-container"></div>
-        <div id="ucUsuarios-filtros" class="gm-uc-sidebar">
-            
-        </div>
+        <div id="ucUsuarios-filtros" class="gm-uc-sidebar"></div>
     </div>
     <div class="gm-uc-page-footer">
         <button class="gm-btn primary btnPrimero btn-toolbar" disabled>
             <svg viewBox="0 0 24 24">
                 <path d="M20,5V19L13,12M6,5V19H4V5M13,5V19L6,12" />
             </svg>
-        </button><!--
-        --><button class="gm-btn primary btnAnterior btn-toolbar" disabled>
+        </button>
+        <button class="gm-btn primary btnAnterior btn-toolbar" disabled>
             <svg viewBox="0 0 24 24">
                 <path d="M6,18V6H8V18H6M9.5,12L18,6V18L9.5,12Z" />
             </svg>
-        </button><!--
-        --><button class="gm-btn primary btnSiguiente btn-toolbar">
+        </button>
+        <button class="gm-btn primary btnSiguiente btn-toolbar">
             <svg viewBox="0 0 24 24">
                 <path d="M16,18H18V6H16M6,18L14.5,12L6,6V18Z" />
             </svg>
-        </button><!--
-        --><button class="gm-btn primary btnUltimo btn-toolbar">
+        </button>
+        <button class="gm-btn primary btnUltimo btn-toolbar">
             <svg viewBox="0 0 24 24">
                 <path d="M4,5V19L11,12M18,5V19H20V5M11,5V19L18,12" />
             </svg>

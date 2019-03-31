@@ -75,12 +75,13 @@
                             echo $installed_modules->Error;
                         } else {
                             foreach ($installed_modules as $installed_module) {
-                                echo '<div class="menu-item" data-module="'.$installed_module->Id.'" data-items="'.count($installed_module->Items).'">';
-                                    echo '<div class="deco"></div>';
-                                    echo '<div class="label">'.$installed_module->Title.'</div>';
-                                    echo '<div class="badge"></div>';
-                                echo '</div>';
+                                
                                 if(count($installed_module->Items)>1){
+                                    echo '<div class="menu-item" data-module="'.$installed_module->Id.'" data-items="'.count($installed_module->Items).'">';
+                                        echo '<div class="deco"></div>';
+                                        echo '<div class="label">'.$installed_module->Title.'</div>';
+                                        echo '<div class="badge"></div>';
+                                    echo '</div>';
                                     echo '<div class="sub-items-container">';
                                     foreach ($installed_module->Items as $subitem) {
                                         echo '<div class="sub-menu-item" data-module="'.$subitem->Id.'">';
@@ -90,11 +91,15 @@
                                         echo '</div>';
                                     }
                                     echo '</div>';
+                                } else {
+                                    echo '<div class="menu-item" data-module="'.$installed_module->Items[0]->Id.'" data-items="'.count($installed_module->Items).'">';
+                                        echo '<div class="deco"></div>';
+                                        echo '<div class="label">'.$installed_module->Title.'</div>';
+                                        echo '<div class="badge"></div>';
+                                    echo '</div>';
                                 }
                             }
                         }
-                        
-                        
                     ?>
                 </aside>
                 <div id="output">

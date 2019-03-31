@@ -1,22 +1,4 @@
-<?php
-    /*
-    require_once $_SERVER["DOCUMENT_ROOT"]."/main.php";
-    include __DIR__."/modals/md_productos.php";
-    include $_SERVER["DOCUMENT_ROOT"]."/modules/products_services_categories/modals/md-category-n1.php";
-    include $_SERVER["DOCUMENT_ROOT"]."/modules/products_services_categories/modals/md-category-n2.php";
-    include __DIR__."/modals/md_precios.php";
-    */
-?>
-<!--
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-var js, fjs = d.getElementsByTagName(s)[0];
-if (d.getElementById(id)) return;
-js = d.createElement(s); js.id = id;
-js.src = 'https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.11';
-fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
--->
+<?php require_once $_SERVER["DOCUMENT_ROOT"]."/main.php"; ?>
 <div id="mod_products_services" class="gm-uc-page">
     <div class="gm-uc-page-header">
         <button id="ucProductos-btnAgregar" title="Agregar producto" type="button" class="btn-toolbar">
@@ -37,6 +19,7 @@ fjs.parentNode.insertBefore(js, fjs);
         </button>
     </div>
     <div class="gm-uc-page-body">
+        <div class='gm-empty-content'><?= __("support.empty") ?></div>
         <div id="ucProductos-lstProductos" class="gm-itembox-container"></div>
         <div class="gm-uc-sidebar">
             <div class="gm-row">
@@ -85,18 +68,18 @@ fjs.parentNode.insertBefore(js, fjs);
             <svg viewBox="0 0 24 24">
                 <path d="M20,5V19L13,12M6,5V19H4V5M13,5V19L6,12" />
             </svg>
-        </button><!--
-        --><button class="gm-btn primary btnAnterior btn-toolbar" disabled>
+        </button>
+        <button class="gm-btn primary btnAnterior btn-toolbar" disabled>
             <svg viewBox="0 0 24 24">
                 <path d="M6,18V6H8V18H6M9.5,12L18,6V18L9.5,12Z" />
             </svg>
-        </button><!--
-        --><button class="gm-btn primary btnSiguiente btn-toolbar">
+        </button>
+        <button class="gm-btn primary btnSiguiente btn-toolbar">
             <svg viewBox="0 0 24 24">
                 <path d="M16,18H18V6H16M6,18L14.5,12L6,6V18Z" />
             </svg>
-        </button><!--
-        --><button class="gm-btn primary btnUltimo btn-toolbar">
+        </button>
+        <button class="gm-btn primary btnUltimo btn-toolbar">
             <svg viewBox="0 0 24 24">
                 <path d="M4,5V19L11,12M18,5V19H20V5M11,5V19L18,12" />
             </svg>

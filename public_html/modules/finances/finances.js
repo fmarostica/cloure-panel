@@ -5,6 +5,23 @@ var mod_finances = {
     initialize: function(){
         var $this = this;
 
+        $(".btnSiguiente").click(function(){
+            $this.page++;
+            $this.cargar_datos();
+        });
+        $(".btnUltimo").click(function(){
+            $this.page = $this.pages;
+            $this.cargar_datos();
+        });
+        $(".btnPrimero").click(function(){
+            $this.page=1;
+            $this.cargar_datos();
+        });
+        $(".btnAnterior").click(function(){
+            $this.page--;
+            $this.cargar_datos();
+        });
+
         $this.elem.on("click", ".btn-apply-filters", function(){
             $this.cargar_datos();
         });
@@ -112,7 +129,7 @@ var mod_finances = {
         
                             $(".gm-itembox-container").append(
                                 "<div class='gm-itembox'>"+
-                                    "<div class='gm-row clearfix'>"+
+                                    "<div class='row'>"+
                                         "<div class='col-md-9'>"+
                                             "<span class='gm-itembox-title'>"+registros[i].Detalles+"</span>"+
                                             "<div>"+
@@ -132,45 +149,12 @@ var mod_finances = {
                         $("#total-gastos").html(data.Response.TotalEgresos);
                         $("#saldo").html(data.Response.Saldo);
         
-                        //Paginador
-                        $(".gm-pager").empty();
-                        if(pagina>1) $(".gm-pager").append("<button id='btnAnterior'>Anterior</button>");
-                        for (var i=1; i<=totalPaginas;i++)
-                        {
-                            if(pagina==i)
-                                $(".gm-pager").append("<button disabled>"+i+"</button>");
-                            else
-                                $(".gm-pager").append("<button class='paginate_button' data-pagina='"+i+"'>"+i+"</button>");
-                        }
-                        if(pagina<totalPaginas) $(".gm-pager").append("<button id='btnSiguiente'>Siguiente</button>");
                         
-                        $("#btnAnterior").click(function(){
-                            pagina-=1;
-                            $this.cargar_datos(pagina);
-                            window.scrollTo(0, 0);
-                            return false;
-                        });
-        
-                        $("#btnSiguiente").click(function(){
-                            pagina+=1;
-                            $this.cargar_datos(pagina);
-                            window.scrollTo(0, 0);
-                            return false;
-                        });
-        
-                        $(".paginate_button").click(function(e){
-                            var pagina = $(this).data("pagina");
-                            $this.cargar_datos(pagina);
-                            window.scrollTo(0, 0);
-                            return false;
-                        });
                     } else {
-                        $(".gm-itembox-container").append("<div class='gm-empty-content'>No se encontraron movimientos<br />"+
-                        "<span class='gm-small'>Aquí veras las operaciones de dinero como también las de cuenta corriente</span>"+
-                        "</div>");
+                        $(".gm-itembox-container").append("<div class='gm-empty-content'>No se encontraron registros.</div>");
                         $(".gm-itembox-container").addClass("empty");
-                        $(".gm-uc-addon").css("display", "none");
                     }
+                    $("#gm-uc-page-footer-total-registers").html(data.Response.TotalRegistros);
                 }
                 else{
                     $("#output").html("<div class='alert alert-danger'><strong>Error: </strong>"+data.Error+"</div>");

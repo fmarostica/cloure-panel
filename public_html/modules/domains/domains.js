@@ -148,10 +148,8 @@ var mod_domains = {
                             return false;
                         });
                     } else {
-                        $(".gm-itembox-container").append("<div class='gm-empty-content'>No se encontraron registros<br />"+
-                        "</div>");
-                        $(".gm-itembox-container").addClass("empty");
-                        $(".gm-uc-addon").css("display", "none");
+                        $(".gm-uc-page-body").addClass("empty");
+                        $(".gm-empty-content").addClass("visible");
                     }
                 }
                 else{

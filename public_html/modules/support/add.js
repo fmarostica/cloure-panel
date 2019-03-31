@@ -4,7 +4,10 @@ var mod_support = {
     initialize: function(){
         var $this = this;
 
-        $this.element.find(".btn-send").click(function(e){
+        $("#btn-back").click(function(e){
+            CloureManager.go_back();
+        });
+        $("#btn-save").click(function(e){
             $.ajax({
                 url: $this.ajax_url,
                 data: {
@@ -17,17 +20,14 @@ var mod_support = {
                 dataType: 'json',
                 success: function(data){
                     if(data.Error!=""){
-                        alert(data.Error);
+                        swal("Error", data.Error, "error");
                     } else {
                         swal("Operacion realizada", "El mensaje ha sido enviado.", "success");
-                        $this.element.find(".frm-support").fadeOut();
-                        
+                        CloureManager.go_back();
                     }
                 }
             });
         });
-
-        $("#output-loader").css("display", "none");
     }
 }
 

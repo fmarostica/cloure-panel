@@ -2,6 +2,8 @@ var mod_receipts = {
     ajax_url: "/ajax/xhr.php",
     module_info: null,
     elem: $("#receiptsPage"),
+    page: 1,
+    pages: 1,
     initialize: function(){
         var $this = this;
 
@@ -20,6 +22,23 @@ var mod_receipts = {
 
         $("#btnBack").click(function(){
             CloureManager.go_back();
+        });
+
+        $(".btnSiguiente").click(function(){
+            $this.page++;
+            $this.cargar_datos();
+        });
+        $(".btnUltimo").click(function(){
+            $this.page = $this.pages;
+            $this.cargar_datos();
+        });
+        $(".btnPrimero").click(function(){
+            $this.page=1;
+            $this.cargar_datos();
+        });
+        $(".btnAnterior").click(function(){
+            $this.page--;
+            $this.cargar_datos();
         });
 
         $this.elem.find(".gm-itembox-container").on("click", ".gm-itembox", function(){
@@ -53,7 +72,7 @@ var mod_receipts = {
                     var filter_items = filter.Items;
 
                     if(filter.Type=="combo"){
-                        combo_str = "<select class='gm-form-control-alt gm-filter gm-filter-"+filter.Name+"' style='margin-bottom: 10px;'>";
+                        combo_str = "<select class='form-control gm-filter gm-filter-"+filter.Name+"' style='margin-bottom: 10px;'>";
                         for (let j = 0; j < filter_items.length; j++) {
                             combo_str+="<option value='"+filter_items[j].Id+"'>"+filter_items[j].Title+"</option>";
                         }
@@ -61,14 +80,14 @@ var mod_receipts = {
                         filtersBox.append("<div>"+combo_str+"</div>");
                     }
                     if(filter.Type=="date"){
-                        filtersBox.append("<div><input type='date' class='gm-form-control-alt gm-filter-"+filter.Name+"' style='margin-bottom: 10px;' /></div>")
+                        filtersBox.append("<div><input type='date' class='form-control gm-filter-"+filter.Name+"' style='margin-bottom: 10px;' /></div>")
                     }
                 }
-                filtersBox.append("<button class='gm-btn primary btn-apply-filters'>Aplicar</button>")
+                filtersBox.append("<button class='btn btn-primary btn-block btn-apply-filters'>"+$this.module_info.apply_filters+"</button>")
             }
         });
     },
-    cargar_datos: function(pagina=1){
+    cargar_datos: function(){
         var $this = this;
         $("#btnSiguiente").attr("disabled", false);
         $("#btnUltimo").attr("disabled", false);
@@ -82,7 +101,7 @@ var mod_receipts = {
                 module: "receipts",
                 topic: "listar", 
                 filtro: $this.elem.find(".txt-search").val(), 
-                pagina : pagina, 
+                pagina : $this.page, 
                 ordenar_por: $this.elem.find(".gm-filter-order_by").val(), 
                 orden: $this.elem.find(".gm-filter-order_type").val(),
                 sucursal: $this.elem.find(".gm-filter-company_branch").val(),
@@ -95,10 +114,7 @@ var mod_receipts = {
             success: function(data)
             {
                 var registros = data.Response.Registros;
-                var inicio = data.Response.Inicio;
-                var fin = data.Response.Fin;
-                var total_registros = data.Response.TotalRegistros;
-                var totalPaginas = data.Response.TotalPaginas;
+                $this.pages = data.Response.TotalPaginas;
 
                 $(".gm-itembox-container").empty();
                 if(data.Error==""){
@@ -130,49 +146,31 @@ var mod_receipts = {
                         $("#total-gastos").html(data.Response.TotalEgresos);
                         $("#saldo").html(data.Response.Saldo);
         
-                        //Paginador
-                        $(".gm-pager").empty();
-                        if(pagina>1) $(".gm-pager").append("<button id='btnAnterior'>Anterior</button>");
-                        for (var i=1; i<=totalPaginas;i++)
-                        {
-                            if(pagina==i)
-                                $(".gm-pager").append("<button disabled>"+i+"</button>");
-                            else
-                                $(".gm-pager").append("<button class='paginate_button' data-pagina='"+i+"'>"+i+"</button>");
+                        if($this.page>1){
+                            $(".btnAnterior").prop("disabled", false);
+                            $(".btnPrimero").prop("disabled", false);
+                        } else {
+                            $(".btnAnterior").prop("disabled", true);
+                            $(".btnPrimero").prop("disabled", true);
                         }
-                        if(pagina<totalPaginas) $(".gm-pager").append("<button id='btnSiguiente'>Siguiente</button>");
-                        
-                        $("#btnAnterior").click(function(){
-                            pagina-=1;
-                            $this.cargar_datos(pagina);
-                            window.scrollTo(0, 0);
-                            return false;
-                        });
-        
-                        $("#btnSiguiente").click(function(){
-                            pagina+=1;
-                            $this.cargar_datos(pagina);
-                            window.scrollTo(0, 0);
-                            return false;
-                        });
-        
-                        $(".paginate_button").click(function(e){
-                            var pagina = $(this).data("pagina");
-                            $this.cargar_datos(pagina);
-                            window.scrollTo(0, 0);
-                            return false;
-                        });
+                        if($this.page<$this.pages){
+                            $(".btnSiguiente").prop("disabled", false);
+                            $(".btnUltimo").prop("disabled", false);
+                        } else {
+                            $(".btnSiguiente").prop("disabled", true);
+                            $(".btnUltimo").prop("disabled", true);
+                        }
+
                     } else {
-                        $(".gm-itembox-container").append("<div class='gm-empty-content'>No se encontraron comprobantes<br />"+
-                        "<span class='gm-small'>Aquí veras los comprobantes que hayas realizado</span>"+
-                        "</div>");
+                        $(".gm-itembox-container").append("<div class='gm-empty-content'>No se encontraron registros.</div>");
                         $(".gm-itembox-container").addClass("empty");
-                        $(".gm-uc-addon").css("display", "none");
                     }
+                    $("#gm-uc-page-footer-total-registers").html(data.Response.TotalRegistros);
                 }
                 else{
                     $("#output").html("<div class='alert alert-danger'><strong>Error: </strong>"+data.Error+"</div>");
                 }
+                
                 $("#output-loader").css("display", "none");
             }
         });

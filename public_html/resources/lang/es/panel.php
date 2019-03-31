@@ -6,4 +6,5 @@ return [
     "pass_placeholder"=>"Clave",
     "login_prompt"=>"Ingresar",
     "forgot_pass"=>"¿Olvido su clave?",
+    "btn_apply"=>"Aplicar"
 ];
